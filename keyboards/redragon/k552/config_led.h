@@ -17,6 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#ifdef OPENRGB_ENABLE
+#define OPENRGB_ZONES_COUNT 1
+#define OPENRGB_MATRIX_COLUMNS 17
+#define OPENRGB_MATRIX_ROWS 6
+#endif
+
 // Backlight configuration
 #define BACKLIGHT_LEVELS 8
 

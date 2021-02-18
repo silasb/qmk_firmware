@@ -4,12 +4,12 @@
 #include "config_led.h"
 
 led_config_t g_led_config = { {
-    {   0,      1,      2,      3,      4,      5,      6,      7,      8,      9,     10,     11,     12, NO_LED,     13,     14,     15  },
-    {  16,     17,     18,     19,     20,     21,     22,     23,     24,     25,     26,     27,     28,     29,     30,     31,     32  },
-    {  33,     34,     35,     36,     37,     38,     39,     40,     41,     42,     43,     44,     45,     46,     47,     48,     49  },
-    {  50,     51,     52,     53,     54,     55,     56,     57,     58,     59,     60,     61, NO_LED,     62, NO_LED, NO_LED, NO_LED  },
-    {  63, NO_LED,     64,     65,     66,     67,     68,     69,     70,     71,     72,     73, NO_LED,     74, NO_LED,     75, NO_LED  },
-    {  76,     77,     78,     79,     80,     81,     82, NO_LED,     83, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED,     84,     85,     86  }
+    {   0,      1,      2,      3,      4,      5,      6,      7,      8,      9,     10,     11,     12, NO_LED,     14,     15,     16  },
+    {  17,     18,     19,     20,     21,     22,     23,     24,     25,     26,     27,     28,     29,     30,     31,     32,     33  },
+    {  34,     35,     36,     37,     38,     39,     40,     41,     42,     43,     44,     45,     46,     47,     48,     49,     50  },
+    {  51,     52,     53,     54,     55,     56,     57,     58,     59,     60,     61,     62, NO_LED,     64, NO_LED, NO_LED, NO_LED  },
+    {  68, NO_LED,     70,     71,     72,     73,     74,     75,     76,     77,     78,     79, NO_LED,     81, NO_LED,     83, NO_LED  },
+    {  85,     86,     87,     88,     89,     90,     91, NO_LED,     93, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED,     99,    100,    101  }
 }, {
     { 0   *14, 0 }, { 2   *14, 0 }, { 3   *14, 0 }, { 4   *14, 0 }, { 5   *14, 0 }, { 6.5 *14, 0 }, { 7.5 *14, 0 }, { 8.5 *14, 0 }, { 9.5 *14, 0 }, { 11  *14, 0 }, { 12  *14, 0 }, { 13  *14, 0 }, { 14  *14, 0 }, { 0   *14, 0 }, { 15  *14, 0 }, { 16  *14, 0 }, { 17  *14, 0 },
     { 0   *14, 1 }, { 1   *14, 1 }, { 2   *14, 1 }, { 3   *14, 1 }, { 4   *14, 1 }, { 5   *14, 1 }, { 6   *14, 1 }, { 7   *14, 1 }, { 8   *14, 1 }, { 9   *14, 1 }, { 10  *14, 1 }, { 11  *14, 1 }, { 12  *14, 1 }, { 13.5*14, 1 }, { 15  *14, 1 }, { 16  *14, 1 }, { 17  *14, 1 },
@@ -25,5 +25,45 @@ led_config_t g_led_config = { {
    5, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 5, 0, 5, 0,
    5, 5, 5, 4, 5, 5, 5, 0, 5, 0, 0, 0, 0, 0, 5, 5, 5,
 } };
+
+#ifdef OPENRGB_ENABLE
+const openrgb_config_t g_openrgb_config =
+{
+    // Zones names
+    {"Keyboard"},
+
+    // Zones types
+    {OPENRGB_ZONE_TYPE_MATRIX},
+
+    // Zones sizes
+    {102},
+
+/* This servers as an example - the alt doesn't actually need this, only keyboards where their
+//  g_led_config.matrix_co and layout doesn't actually represnet the true physical form of the keyboard
+//  to get the correct values for the physical_to_hardware_location array
+//  I used the second array on the layout macro at alt.h
+*/
+#ifdef OPENRGB_USE_CUSTOM_MATRIX_MAP
+    // LED matrix map
+    {
+    {   0,      1,      2,      3,      4,      5,      6,      7,      8,      9,     10,     11,     12, NO_LED,     13,     14,     15  },
+    {  16,     17,     18,     19,     20,     21,     22,     23,     24,     25,     26,     27,     28,     29,     30,     31,     32  },
+    {  33,     34,     35,     36,     37,     38,     39,     40,     41,     42,     43,     44,     45,     46,     47,     48,     49  },
+    {  50,     51,     52,     53,     54,     55,     56,     57,     58,     59,     60,     61, NO_LED,     62, NO_LED, NO_LED, NO_LED  },
+    {  63, NO_LED,     64,     65,     66,     67,     68,     69,     70,     71,     72,     73, NO_LED,     74, NO_LED,     75, NO_LED  },
+    {  76,     77,     78,     79,     80,     81,     82, NO_LED,     83, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED,     84,     85,     86  }
+    },
+    // Key index to physical position map
+    {
+    {   0,      1,      2,      3,      4,      5,      6,      7,      8,      9,     10,     11,     12, NO_LED,     13,     14,     15  },
+    {  16,     17,     18,     19,     20,     21,     22,     23,     24,     25,     26,     27,     28,     29,     30,     31,     32  },
+    {  33,     34,     35,     36,     37,     38,     39,     40,     41,     42,     43,     44,     45,     46,     47,     48,     49  },
+    {  50,     51,     52,     53,     54,     55,     56,     57,     58,     59,     60,     61, NO_LED,     62, NO_LED, NO_LED, NO_LED  },
+    {  63, NO_LED,     64,     65,     66,     67,     68,     69,     70,     71,     72,     73, NO_LED,     74, NO_LED,     75, NO_LED  },
+    {  76,     77,     78,     79,     80,     81,     82, NO_LED,     83, NO_LED, NO_LED, NO_LED, NO_LED, NO_LED,     84,     85,     86  }
+    },
+#endif
+};
+#endif
 
 #endif
