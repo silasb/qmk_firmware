@@ -23,9 +23,9 @@
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x5013
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    "AKKO"
-#define PRODUCT         "3084 BT5.0"
-#define DESCRIPTION     "Mechanical keyboard"
+#define MANUFACTURER    Royal Kludge
+#define PRODUCT         RK68
+#define DESCRIPTION     Mechanical keyboard
 
 /* key matrix size */
 #define MATRIX_ROWS 5

@@ -55,6 +55,7 @@ void __early_init(void) {
   sn32_clock_init();
 }
 
+// Not sure what this does, but it doesn't boot up the keyboard after this is enabled
 // void Reset_Handler(void) {
 //     setPinOutput(C4);
 //     setPinInputHigh(A0);
