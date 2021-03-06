@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define LED_MATRIX_ROWS 5
 #define LED_MATRIX_COLS 15
-// #define LED_MATRIX_ROW_PINS {C5, C6, C7, C4, C8 }
+#define LED_MATRIX_ROW_PINS { C1, C2, D7, C9, C10 }
 
 #define DRIVER_LED_TOTAL (LED_MATRIX_ROWS * LED_MATRIX_COLS)
 
