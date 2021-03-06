@@ -28,16 +28,16 @@
 #define DESCRIPTION     "Mechanical keyboard"
 
 /* key matrix size */
-#define MATRIX_ROWS 6
-#define MATRIX_COLS 16
+#define MATRIX_ROWS 5
+#define MATRIX_COLS 15
 
 /* key matrix pins */
-#define MATRIX_ROW_PINS { D6, D7, D8, C3, C9, C10 }
-#define MATRIX_COL_PINS { A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, A13, A14, A15 }
+#define MATRIX_ROW_PINS { C4, C5, C6, C7, C8 }
+#define MATRIX_COL_PINS { A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, D0, A13 }
 #define UNUSED_PINS
 
 /* COL2ROW or ROW2COL */
-#define DIODE_DIRECTION COL2ROW
+#define DIODE_DIRECTION ROW2COL
 
 
 /* Set 0 if debouncing isn't needed */

@@ -20,9 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Backlight configuration
 #define BACKLIGHT_LEVELS 8
 
-#define LED_MATRIX_ROWS 6
-#define LED_MATRIX_COLS 16
-#define LED_MATRIX_ROW_PINS {C5, C6, C7, C4, C8, C2}
+#define LED_MATRIX_ROWS 5
+#define LED_MATRIX_COLS 15
+// #define LED_MATRIX_ROW_PINS {C5, C6, C7, C4, C8 }
 
 #define DRIVER_LED_TOTAL (LED_MATRIX_ROWS * LED_MATRIX_COLS)
 

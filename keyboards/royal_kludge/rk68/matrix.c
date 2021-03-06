@@ -30,7 +30,7 @@ Ported to QMK by Stephen Peery <https://github.com/smp4488/>
 #include "quantum.h"
 
 static const pin_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
-static const pin_t led_row_pins[LED_MATRIX_ROWS] = LED_MATRIX_ROW_PINS;
+// static const pin_t led_row_pins[LED_MATRIX_ROWS] = LED_MATRIX_ROW_PINS;
 static const pin_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
 
 matrix_row_t raw_matrix[MATRIX_ROWS]; //raw values
@@ -38,7 +38,7 @@ matrix_row_t matrix[MATRIX_ROWS]; //debounced values
 
 static bool matrix_changed = false;
 
-extern volatile uint8_t led_state[DRIVER_LED_TOTAL];
+// extern volatile uint8_t led_state[DRIVER_LED_TOTAL];
 
 __attribute__((weak)) void matrix_init_kb(void) { matrix_init_user(); }
 
@@ -64,12 +64,13 @@ static void init_pins(void) {
         setPinInputHigh(col_pins[x]);
     }
 
-    for (uint8_t x = 0; x < LED_MATRIX_ROWS; x++) {
-        setPinOutput(led_row_pins[x]);
-        writePinLow(led_row_pins[x]);
-    }
+    // for (uint8_t x = 0; x < LED_MATRIX_ROWS; x++) {
+    //     setPinOutput(led_row_pins[x]);
+    //     writePinLow(led_row_pins[x]);
+    // }
 }
 
+/*
 static void reset_pwm(void) {
     // setup pwm 0-12 and 16 for column pins
     SN_CT16B1->PWMCTRL  =  (mskCT16_PWM0MODE_1 \
@@ -126,6 +127,7 @@ static void reset_pwm(void) {
                             |mskCT16_PWM14EN_EN \
                             |mskCT16_PWM15EN_EN );
 }
+*/
 
 void matrix_init(void) {
     // initialize key pins
@@ -166,7 +168,7 @@ void matrix_init(void) {
     // Let TC start counting.
     SN_CT16B1->TMRCTRL |= mskCT16_CEN_EN;
 
-    reset_pwm();
+    // reset_pwm();
 
     NVIC_ClearPendingIRQ(CT16B1_IRQn);
     nvicEnableVector(CT16B1_IRQn, 4);
@@ -217,11 +219,11 @@ OSAL_IRQ_HANDLER(Vector84) {
     scan_counter = (scan_counter+1) % 11;
 
     // disable led row
-    writePinLow(led_row_pins[current_row]);
+    // writePinLow(led_row_pins[current_row]);
 
     if (scan_counter == 0) {
         // Disable PWM outputs on column pins
-        SN_CT16B1->PWMIOENB = 0;
+        // SN_CT16B1->PWMIOENB = 0;
 
         // set columns input
         for (uint8_t col_index = 0; col_index < MATRIX_COLS; col_index++) {
@@ -234,31 +236,31 @@ OSAL_IRQ_HANDLER(Vector84) {
         for (uint8_t col_index = 0; col_index < MATRIX_COLS; col_index++) {
             setPinOutput(col_pins[col_index]);
         }
-        reset_pwm();
+        // reset_pwm();
     }
 
     current_row = (current_row + 1) % LED_MATRIX_ROWS;
 
     // set led col pins
-    SN_CT16B1->MR0  = led_state[current_row*LED_MATRIX_COLS + 0 ];
-    SN_CT16B1->MR1  = led_state[current_row*LED_MATRIX_COLS + 1 ];
-    SN_CT16B1->MR2  = led_state[current_row*LED_MATRIX_COLS + 2 ];
-    SN_CT16B1->MR3  = led_state[current_row*LED_MATRIX_COLS + 3 ];
-    SN_CT16B1->MR4  = led_state[current_row*LED_MATRIX_COLS + 4 ];
-    SN_CT16B1->MR5  = led_state[current_row*LED_MATRIX_COLS + 5 ];
-    SN_CT16B1->MR6  = led_state[current_row*LED_MATRIX_COLS + 6 ];
-    SN_CT16B1->MR7  = led_state[current_row*LED_MATRIX_COLS + 7 ];
-    SN_CT16B1->MR8  = led_state[current_row*LED_MATRIX_COLS + 8 ];
-    SN_CT16B1->MR9  = led_state[current_row*LED_MATRIX_COLS + 9 ];
-    SN_CT16B1->MR10 = led_state[current_row*LED_MATRIX_COLS + 10];
-    SN_CT16B1->MR11 = led_state[current_row*LED_MATRIX_COLS + 11];
-    SN_CT16B1->MR12 = led_state[current_row*LED_MATRIX_COLS + 12];
-    SN_CT16B1->MR13 = led_state[current_row*LED_MATRIX_COLS + 13];
-    SN_CT16B1->MR14 = led_state[current_row*LED_MATRIX_COLS + 14];
-    SN_CT16B1->MR15 = led_state[current_row*LED_MATRIX_COLS + 15];
+    // SN_CT16B1->MR0  = led_state[current_row*LED_MATRIX_COLS + 0 ];
+    // SN_CT16B1->MR1  = led_state[current_row*LED_MATRIX_COLS + 1 ];
+    // SN_CT16B1->MR2  = led_state[current_row*LED_MATRIX_COLS + 2 ];
+    // SN_CT16B1->MR3  = led_state[current_row*LED_MATRIX_COLS + 3 ];
+    // SN_CT16B1->MR4  = led_state[current_row*LED_MATRIX_COLS + 4 ];
+    // SN_CT16B1->MR5  = led_state[current_row*LED_MATRIX_COLS + 5 ];
+    // SN_CT16B1->MR6  = led_state[current_row*LED_MATRIX_COLS + 6 ];
+    // SN_CT16B1->MR7  = led_state[current_row*LED_MATRIX_COLS + 7 ];
+    // SN_CT16B1->MR8  = led_state[current_row*LED_MATRIX_COLS + 8 ];
+    // SN_CT16B1->MR9  = led_state[current_row*LED_MATRIX_COLS + 9 ];
+    // SN_CT16B1->MR10 = led_state[current_row*LED_MATRIX_COLS + 10];
+    // SN_CT16B1->MR11 = led_state[current_row*LED_MATRIX_COLS + 11];
+    // SN_CT16B1->MR12 = led_state[current_row*LED_MATRIX_COLS + 12];
+    // SN_CT16B1->MR13 = led_state[current_row*LED_MATRIX_COLS + 13];
+    // SN_CT16B1->MR14 = led_state[current_row*LED_MATRIX_COLS + 14];
+    // SN_CT16B1->MR15 = led_state[current_row*LED_MATRIX_COLS + 15];
 
     // enable led row
-    writePinHigh(led_row_pins[current_row]);
+    // writePinHigh(led_row_pins[current_row]);
 
     // reset and enable timer
     SN_CT16B1->TC = 0;
