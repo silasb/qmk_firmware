@@ -37,6 +37,7 @@
 #define UNUSED_PINS
 
 /* COL2ROW or ROW2COL */
+// doesn't make a difference for this firmware since we have a custom firmware.
 #define DIODE_DIRECTION ROW2COL
 
 
