@@ -1,11 +1,19 @@
 # Royal Kludge RK68 (BT855) Mechanical keyboard
 
 ```
-sudo apt-get install gcc-arm-none-eabi binutils-arm-none-eabi openocd
+curl -o $HOME/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -L "https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2?revision=ca0cbf9c-9de2-491c-ac48-898b5bbc0443&la=en&hash=68760A8AE66026BCF99F05AC017A6A50C6FD832A"
+
+cd $HOME
+tar xvjf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+
+export PATH=$HOME/gcc-arm-none-eabi-10-2020-q4-major/bin:$PATH
+which -a arm-none-eabi-gcc
+cd -
+
 make git-submodule
 ```
 
-3084BT5.0
+Royal Kludge RK68 (BT855)
 
 Based on Royal Kludge RK61 by: [Diff-fusion](https://github.com/Diff-fusion)
 Hardware Supported: SN32F260
